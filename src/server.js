@@ -41,9 +41,13 @@ let database = new Sequelize({
 
 // Define our Post model
 // id, createdAt, and updatedAt are added by sequelize automatically
-let Post = database.define('posts', {
+let Book = database.define('posts', {
   title: Sequelize.STRING,
-  body: Sequelize.TEXT
+  titleWant: Sequelize.STRING,
+  category: Sequelize.STRING,
+  categoryWant: Sequelize.STRING,
+  body: Sequelize.TEXT,
+  phoneNumber: Sequelize.STRING
 })
 
 // Initialize epilogue
@@ -54,8 +58,8 @@ epilogue.initialize({
 
 // Create the dynamic REST resource for our Post model
 let userResource = epilogue.resource({
-  model: Post,
-  endpoints: ['/posts', '/posts/:id']
+  model: Book,
+  endpoints: ['/books', '/books/:id']
 })
 
 // Resets the database and launches the express app on :8081

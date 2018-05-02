@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import PostsManager from '@/components/PostsManager'
+import Home from '@/components/Home'
+import BooksManager from '@/components/BooksManager'
+import AddBook from '@/components/AddBook'
 import Auth from '@okta/okta-vue'
 
 Vue.use(Auth, {
@@ -18,17 +19,25 @@ let router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'Home',
+      component: Home
     },
     {
       path: '/implicit/callback',
       component: Auth.handleCallback()
     },
     {
-      path: '/posts-manager',
-      name: 'PostsManager',
-      component: PostsManager,
+      path: '/books-manager',
+      name: 'BooksManager',
+      component: BooksManager,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/add-book',
+      name: 'addBook',
+      component: AddBook,
       meta: {
         requiresAuth: true
       }
